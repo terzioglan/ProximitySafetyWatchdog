@@ -125,20 +125,13 @@ In seperate terminals run the following. You might have to `source install/setup
   ```bash
   ros2 run safety_watchdog safety_gate_turtle
   ```
+- Release the emergency stop button by hitting enter on the `red_button` terminal.
 
+Similar to the UR example, the turtle must now be (1) moving around the workspace, (2) adjusting its speed based on the proximity sensor reading, and (3) stopping abruptly when the enter key is hit on the `red_button` terminal and resuming operation once the enter key is hit a second time.
 
-
-## References & Sources
-https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
-https://docs.universal-robots.com/Universal_Robots_ROS2_Documentation/doc/ur_robot_driver/ur_robot_driver/doc/installation/installation.html
-https://docs.docker.com/engine/install/ubuntu/
-https://github.com/pla10/ros2_ur5_interface
-
-
-## todo:
+## 4. Future work
+- Fork `ros2_ur5_interface` and add `ur_controller` velocity control to the launch files. Refactor and unify the `safety_gate_robot`.
 - define buttonCallback in red_button.py so that you don't have to make a blocking call for user input and do other stuff.
-- define each common property--e.g., source and taget topic names for connected nodes--without requiring repetition.
-- check setup.py and package.xml contents for each package.
 - remove redundant imports.
 - make the main package able to handle any message type that's not rclpy.std_msgs.msg.Twist
 - can make config.py parameters available across the ros run. Not sure if that makes sense here though since \(almost\) all config.py parameters are actually private.
@@ -154,7 +147,15 @@ https://github.com/pla10/ros2_ur5_interface
 - can put volatile stuff, like hysteresis width, passable by arguments.
 - reshape the remainder of the trajectory after and emergency or proximity stop 
 - ros2_ur5_interface only spawns a trajectory controller. Such responsivity would be better suited with a velocity controller, I think.
-- fork ros2_ur5_interface, and add ur_controller velocity control to the launch files. refactor the safety_gate.
 - safety_gate_robot.SafetyGateRobot can be broken down into two classes. One for handling the state machine logic only, the other for managing back/forty message passing.
 
+
+## References & Sources
+https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
+https://docs.universal-robots.com/Universal_Robots_ROS2_Documentation/doc/ur_robot_driver/ur_robot_driver/doc/installation/installation.html
+https://docs.docker.com/engine/install/ubuntu/
+https://github.com/pla10/ros2_ur5_interface
+
+
+## todo:
 
