@@ -85,7 +85,7 @@ class SafetyGate(Node):
                     self.robotOpStatus.mode = "SLOW"
                     self.get_logger().info(f'Robot op mode changed to {self.robotOpStatus.mode} based on proximity {int(distance)} mm')
                     return
-            if "FULL_SPEED" in possibleFasterNextStates:  # redundant but for completeness
+            if "FULL_SPEED" in possibleFasterNextStates:
                 if distance > CONFIG_GATE.STATE_TRANSITION_HYSTERESIS_THRESHOLDS[self.robotOpStatus.mode]["FASTER"]["FULL_SPEED"]:
                     self.robotOpStatus.mode = "FULL_SPEED"
                     self.get_logger().info(f'Robot op mode changed to {self.robotOpStatus.mode} based on proximity {int(distance)} mm')
