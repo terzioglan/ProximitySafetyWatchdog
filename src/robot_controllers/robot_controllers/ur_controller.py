@@ -1,6 +1,5 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.action import ActionClient
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from builtin_interfaces.msg import Duration
 import argparse
