@@ -129,33 +129,23 @@ In seperate terminals run the following. You might have to `source install/setup
 
 Similar to the UR example, the turtle must now be (1) moving around the workspace, (2) adjusting its speed based on the proximity sensor reading, and (3) stopping abruptly when the enter key is hit on the `red_button` terminal and resuming operation once the enter key is hit a second time.
 
-## 4. Future work
+## 4. References & Sources
+- https://github.com/pla10/ros2_ur5_interface
+- https://docs.universal-robots.com/Universal_Robots_ROS2_Documentation/
+- https://docs.docker.com/engine/install/ubuntu/
+
+## 5. Statement of AI use
+- I **did** use Copilot plugin as a code completion tool in VS Code.
+- I **did not** use any AI tool to generate chunks of code or files.
+- I **did not** use any AI tool during the ideation of the approach or the architecture.
+
+## 6. Future work
 - Fork `ros2_ur5_interface` and add `ur_controller` velocity control to the launch files. Refactor and unify the `safety_gate_robot`.
-- define buttonCallback in red_button.py so that you don't have to make a blocking call for user input and do other stuff.
-- remove redundant imports.
-- make the main package able to handle any message type that's not rclpy.std_msgs.msg.Twist
-- can make config.py parameters available across the ros run. Not sure if that makes sense here though since \(almost\) all config.py parameters are actually private.
-- can use interval data structures to check proximity thresholds. But that requires using other packages, e.g., pandas, pyinterval (?)
-- can spawn multiple threads to handle several safety_gate callbacks in parallel (e.g. MultiThreadedExecutor). though it doesn't take much time to callback to return so i'm not sure if that's absolutely necessary.
+- Can make `config.py` parameters available system-wide. Not sure if that is a good idea though since \(almost\) all `config.py` parameters are actually private.
+- can spawn multiple threads to handle several safety_gate callbacks in parallel (e.g. MultiThreadedExecutor). though it doesn't take much time for a callback to return so i'm not sure if that's absolutely necessary.
 - can check if the robot stopped after the stop message is sent, and keep sending the stop message after you make sure the robot stops.
-- might make sense to differentiate the big_red_button shutdown vs. proximity shutdown instead of using a single "STOP" robot state for both. 
-- known bug is a feature: if the red_button is ran and it is released, since safety_gate starts with robotOpMode="STOP" as default, you need to press/release the red button to start operation. 
+- almost like a bug but actually is a feature: if the red_button is ran and it is released, since safety_gate starts with `robotOpStatus.mode="EMERGENCY_STOP"` as default, you need to press/release the red button to start operation. 
 - can publish robotOpStatus on a topic to make it available for other modules to monitor. this topic should be protected and limited to authorized nodes only
-- make emergency_stop_status and proximity sensor topics only available to write to their associated nodes.
-- get rid of print commands.
-- namespaces for packages.
+- make emergency_stop_status and proximity sensor topics only available to write to their associated nodes. alternatively use namespaces for packages.
 - can put volatile stuff, like hysteresis width, passable by arguments.
-- reshape the remainder of the trajectory after and emergency or proximity stop 
-- ros2_ur5_interface only spawns a trajectory controller. Such responsivity would be better suited with a velocity controller, I think.
-- safety_gate_robot.SafetyGateRobot can be broken down into two classes. One for handling the state machine logic only, the other for managing back/forty message passing.
-
-
-## References & Sources
-https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
-https://docs.universal-robots.com/Universal_Robots_ROS2_Documentation/doc/ur_robot_driver/ur_robot_driver/doc/installation/installation.html
-https://docs.docker.com/engine/install/ubuntu/
-https://github.com/pla10/ros2_ur5_interface
-
-
-## todo:
 
