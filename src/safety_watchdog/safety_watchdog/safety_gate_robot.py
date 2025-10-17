@@ -34,30 +34,9 @@ class TrajectoryStatus(object): # only used by safety_gate_robot
     
     def setTrajectory(self, goalHandle, trajectory, velocityMultiplier, active = True) -> None:
         """
-        Set the active trajectory and associated metadata for the safety gate.
-        Description:
-            This is only called when the robot is in an operationally functional state, and the trajectory
-            goal is being submitted to the controller.
-        Parameters:
-            goalHandle (object):
-                A handle or identifier for the associated goal (for example an actionlib GoalHandle
-                or any object used by the surrounding system to track/cancel the goal).
-            trajectory (object):
-                The trajectory to be monitored/used by the safety gate. Can be a ROS JointTrajectory,
-                a list of waypoints, or any format expected elsewhere in the class.
-            velocityMultiplier (float):
-                Scaling factor applied to trajectory velocities. Values > 1 increase speed,
-                values in (0,1) decrease speed. Zero effectively stops motion.
-            active (bool, optional):
-                Whether the trajectory should be marked active. Defaults to True.
-        Side effects:
-            - Sets self.active to the provided active flag.
-            - Records self.onset as the current time (time.time()).
-            - Stores self.goalHandle, self.trajectory and self.velocityMultiplier on the instance.
-        Returns:
-            None
+        This is only called when the robot is in an operationally functional state, and the trajectory
+        goal is being submitted to the controller.
         """
-
         self.active = active
         self.onset = time.time()
         self.goalHandle = goalHandle
