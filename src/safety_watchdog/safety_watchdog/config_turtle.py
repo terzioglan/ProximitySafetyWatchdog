@@ -1,0 +1,5 @@
+from robot_controllers.config_turtle import TOPIC_CONTROL_COMMANDS
+
+TOPIC_SOURCE_CONTROL_COMMANDS =  TOPIC_CONTROL_COMMANDS
+TOPIC_TARGET_CONTROL_COMMANDS =  "turtle1/cmd_vel"
+

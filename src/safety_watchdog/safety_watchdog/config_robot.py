@@ -1,0 +1,4 @@
+from robot_controllers.config_ur import TOPIC_CONTROL_COMMANDS
+
+TOPIC_SOURCE_CONTROL_COMMANDS =  TOPIC_CONTROL_COMMANDS
+TOPIC_TARGET_CONTROL_COMMANDS =  "/scaled_joint_trajectory_controller/follow_joint_trajectory"

@@ -1,0 +1,5 @@
+TOPIC_EMERGENCY_STOP_STATUS =  "emergency_stop_status"
+RED_BUTTON_INITIAL_STATE = "PRESSED"
+
+TOPIC_PROXIMITY_STATUS =  "proximity_status"
+MEASUREMENT_PERIOD = 10.0  # in milliseconds

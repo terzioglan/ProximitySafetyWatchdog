@@ -1,0 +1,5 @@
+TOPIC_CONTROL_COMMANDS =  "control_commands"
+
+VELOCITY = 1.0
+ANGULAR_VELOCITY =  1.0
+COMMAND_PERIOD = 1.0  # seconds
