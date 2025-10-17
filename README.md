@@ -73,6 +73,9 @@ ros2 run safety_watchdog safety_gate_robot
 initial state is "EMERGENCY_STOP" so go to the red button terminal and release the break
 
 for turtle example 
+stop the gazebo
+
+run ros2 run turtlesim turtlesim_node
 
 in ~/ProximitySafetyWatchdog using the same separate terminals run
 ros2 run robot_controllers turtle_controller
