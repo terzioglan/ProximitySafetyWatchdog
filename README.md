@@ -29,6 +29,7 @@ follow instructions on ros2_ur5_interface
 run the docker
 check the conatiner id
 and copy the repo into docker
+docker cp <SOURCE DIRECTORY>/ProximitySafetyWatchdog <CONTAINER  ID>:/home/ubuntu
 
 in the docker container
 build repo
@@ -52,9 +53,10 @@ this
 this
 this 
 in ~/ros2_ws run
+source install/setup.bash
 ros2 launch ros2_ur5_interface sim.launch.py
 
-in ~/ProximitySafetyWatchdog separate terminals run
+in the container in a new terminal, navigate to ~/ProximitySafetyWatchdog separate terminals run
 
 source install/setup.bash
 ros2 run robot_controllers ur_controller
@@ -67,6 +69,8 @@ ros2 run safety_monitor proximity_sensor
 
 source install/setup.bash
 ros2 run safety_watchdog safety_gate_robot
+
+initial state is "EMERGENCY_STOP" so go to the red button terminal and release the break
 
 for turtle example 
 
